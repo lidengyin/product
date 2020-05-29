@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.OutputMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.Output">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="provider_id" jdbcType="VARCHAR" property="providerId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="operator_id" jdbcType="VARCHAR" property="operatorId" />
+    <result column="sponsor" jdbcType="VARCHAR" property="sponsor" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="outport_id" jdbcType="VARCHAR" property="outportId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from output
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.hctech2006.product.product.bean.Output">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into output (id, number, price, 
+      comment, provider_id, time, 
+      operator_id, sponsor, type, 
+      goods_id, outport_id)
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{comment,jdbcType=VARCHAR}, #{providerId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{operatorId,jdbcType=VARCHAR}, #{sponsor,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=VARCHAR}, #{outportId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.Output">
+    update output
+    set number = #{number,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      comment = #{comment,jdbcType=VARCHAR},
+      provider_id = #{providerId,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      sponsor = #{sponsor,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      outport_id = #{outportId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, number, price, comment, provider_id, time, operator_id, sponsor, type, 
+    goods_id, outport_id
+    from output
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, number, price, comment, provider_id, time, operator_id, sponsor, type, 
+    goods_id, outport_id
+    from output
+  </select>
+  <select id="checkByOutputIdAndGoodsId" parameterType="map" resultMap="BaseResultMap">
+    select
+        id, number, price, comment, provider_id, time, operator_id, sponsor, type, goods_id, outport_id
+    from output where goods_id=#{goodsId} and outport_id=#{outputId}
+  </select>
+  <update id="updateByOutputIdAndGoodsId" parameterType="cn.hctech2006.product.product.bean.Output">
+    update output
+    set number = #{number,jdbcType=VARCHAR}
+
+    where  goods_id = #{goodsId,jdbcType=VARCHAR} and
+        outport_id = #{outportId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectOutputBykeyWord" parameterType="cn.hctech2006.product.product.DO.OutputDO" resultMap="BaseResultMap">
+    select
+    i.id, i.number, i.price,  i.provider_id, i.time, i.operator_id, i.sponsor, i.type, i.goods_id, i.outport_id,i.comment
+    from output i
+    join goods g on i.goods_id = g.goods_id and g.name like concat('%',#{goodsName},'%')
+    where 1=1
+    <if test="dateTo != null and dateFrom != null">
+      and i.time between #{dateFrom} and #{dateTo}
+    </if>
+  </select>
+</mapper>

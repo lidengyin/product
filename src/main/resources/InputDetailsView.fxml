@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane
+        fx:controller="cn.hctech2006.product.product.view.controller.InputDetailsViewController"
+        prefHeight="400.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <CheckBox fx:id="checkBox" alignment="CENTER" mnemonicParsing="false" prefHeight="18.0" prefWidth="142.0" text="指定查询日期" GridPane.rowIndex="1" />
+            <ChoiceBox fx:id="goodsCB" prefWidth="150.0" GridPane.columnIndex="1" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="220.0" text="选择查询条件" />
+            <DatePicker fx:id="datePickerFrom" prefHeight="24.0" prefWidth="176.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <DatePicker fx:id="datePickerTo" prefHeight="24.0" prefWidth="188.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button onAction="#showAll" mnemonicParsing="false" prefHeight="24.0" prefWidth="143.0" text="显示所有数据" GridPane.columnIndex="4" />
+            <Button onAction="#find" mnemonicParsing="false" prefHeight="24.0" prefWidth="158.0" text="查询" GridPane.columnIndex="3" />
+            <TextField fx:id="keyword" GridPane.columnIndex="2" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="162.0" text="从" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="160.0" text="到" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </top>
+   <center>
+      <TableView fx:id="tableView" prefHeight="340.0" prefWidth="796.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="inputIdCol" prefWidth="75.0" text="入库票号" />
+          <TableColumn fx:id="goodsIdCol" prefWidth="75.0" text="商品编号" />
+            <TableColumn fx:id="goodsNameCol" prefWidth="75.0" text="商品名称" />
+            <TableColumn fx:id="priceCol" prefWidth="75.0" text="单价" />
+            <TableColumn fx:id="numberCol" prefWidth="75.0" text="数量" />
+            <TableColumn fx:id="allPriceCol" prefWidth="75.0" text="金额" />
+            <TableColumn fx:id="providerCol" prefWidth="75.0" text="供应商" />
+            <TableColumn fx:id="timeCol" prefWidth="75.0" text="入货时间" />
+            <TableColumn fx:id="sponsorCol" prefWidth="75.0" text="经手人" />
+            <TableColumn fx:id="operatorCol" prefWidth="75.0" text="操作员" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.ProviderMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.Provider">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="shorts" jdbcType="VARCHAR" property="shorts" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zip" jdbcType="VARCHAR" property="zip" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="contacts_tel" jdbcType="VARCHAR" property="contactsTel" />
+    <result column="bank" jdbcType="VARCHAR" property="bank" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="provider_id" jdbcType="VARCHAR" property="providerId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from provider
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.hctech2006.product.product.bean.Provider">
+
+    insert into provider (id, name, shorts, 
+      address, zip, telephone, 
+      fax, contacts, contacts_tel, 
+      bank, account, email, 
+      available, provider_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{shorts,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{zip,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{contactsTel,jdbcType=VARCHAR}, 
+      #{bank,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      1, #{providerId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.Provider">
+    update provider
+    set name = #{name,jdbcType=VARCHAR},
+      shorts = #{shorts,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zip = #{zip,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contacts_tel = #{contactsTel,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      available = #{available,jdbcType=INTEGER},
+      provider_id = #{providerId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, bank, 
+    account, email, available, provider_id
+    from provider
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, bank, 
+    account, email, available, provider_id
+    from provider where available=1
+  </select>
+  <select id="checkByProviderId" parameterType="String" resultType="int">
+    select
+        count(0)
+    from provider where provider_id=#{providerId}
+  </select>
+  <update id="updateByProviderId" parameterType="cn.hctech2006.product.product.bean.Provider">
+    update provider
+    set name = #{name,jdbcType=VARCHAR},
+        shorts = #{shorts,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},
+        zip = #{zip,jdbcType=VARCHAR},
+        telephone = #{telephone,jdbcType=VARCHAR},
+        fax = #{fax,jdbcType=VARCHAR},
+        contacts = #{contacts,jdbcType=VARCHAR},
+        contacts_tel = #{contactsTel,jdbcType=VARCHAR},
+        bank = #{bank,jdbcType=VARCHAR},
+        account = #{account,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR}
+
+    where provider_id=#{providerId}
+  </update>
+  <update id="updateAvailable" useGeneratedKeys="true" keyProperty="id">
+    update provider
+    set available=0
+    where provider_id=#{providerId}
+  </update>
+  <select id="selectByNameOrShorts" parameterType="cn.hctech2006.product.product.bean.Provider" resultMap="BaseResultMap">
+    select
+    id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, bank, account, email, available, provider_id
+    from provider where 1=1 and available=1
+    <if test="name != null">
+      and name like concat('%',#{name},'%')
+    </if>
+    <if test="shorts != null">
+      and shorts like concat('%',#{shorts},'%')
+    </if>
+  </select>
+  <select id="selectByProviderId" parameterType="String" resultMap="BaseResultMap">
+    select
+        id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, bank, account, email, available, provider_id
+    from provider where provider_id=#{providerId}
+  </select>
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.hctech2006.product.product.view.controller.InputViewController">
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="127.0" text="进货票号" />
+            <TextField fx:id="inputId" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="goodsCB" onAction="#onChooseGoods" prefHeight="24.0" prefWidth="491.0" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="124.0" text="结算方式" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="111.0" text="供应商" GridPane.columnIndex="2" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="112.0" text="进货时间" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="126.0" text="所属商品" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="129.0" text="联系人" GridPane.columnIndex="4" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="129.0" text="经手人" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="sponsor" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <TextField fx:id="contacts" GridPane.columnIndex="5" />
+            <ChoiceBox fx:id="providerCB" onAction="#onChooseProvider" prefWidth="150.0" GridPane.columnIndex="3" />
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </top>
+   <center>
+       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+           <columns>
+               <TableColumn fx:id="goodsIdCol" prefWidth="75.0" text="商品ID" />
+               <TableColumn fx:id="nameCol" prefWidth="75.0" text="商品名称" />
+               <TableColumn fx:id="numberCol" prefWidth="75.0" text="数量" />
+               <TableColumn fx:id="placeCol" prefWidth="75.0" text="产地" />
+               <TableColumn fx:id="priceCol" prefWidth="75.0" text="价格" />
+               <TableColumn fx:id="sizeCol" prefWidth="75.0" text="规格" />
+               <TableColumn fx:id="paceageCol" prefWidth="75.0" text="包装" />
+               <TableColumn fx:id="productCodeCol" prefWidth="75.0" text="批号" />
+           </columns>
+       </TableView>
+   </center>
+   <bottom>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="120.0" text="品种数量" />
+            <TextField fx:id="kindNumber" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#onSave" prefHeight="24.0" prefWidth="140.0" text="入库" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="206.0" text="验收结论" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="136.0" text="货品总数" GridPane.columnIndex="2" />
+            <Label  alignment="CENTER" prefHeight="14.0" prefWidth="172.0" text="操作员" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="14.0" prefWidth="107.0" text="合计金额" GridPane.columnIndex="4" />
+            <Button onAction="#onDelete" mnemonicParsing="false" prefHeight="24.0" prefWidth="134.0" text="删除一行" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="commit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="allNumber" GridPane.columnIndex="3" />
+            <TextField fx:id="allPrice" GridPane.columnIndex="5" />
+            <ChoiceBox fx:id="operatorCB" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </bottom>
+</BorderPane>

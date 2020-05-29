@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.OperatorMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.Operator">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="power" jdbcType="INTEGER" property="power" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="operator_id" jdbcType="VARCHAR" property="operatorId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from operator
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.hctech2006.product.product.bean.Operator">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into operator (id, username, password, 
+      power, name, operator_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{power,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.Operator">
+    update operator
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      power = #{power,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, username, password, power, name, operator_id
+    from operator
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, password, power, name, operator_id
+    from operator
+  </select>
+  <select id="selectByUsername" parameterType="String" resultMap="BaseResultMap">
+    select
+        id, username, password, power, name, operator_id
+    from operator where username=#{username}
+  </select>
+  <select id="selectByOperatorId" parameterType="String" resultMap="BaseResultMap">
+    select
+        id, username, password, power, name, operator_id
+    from operator where operator_id=#{operatorId}
+  </select>
+</mapper>

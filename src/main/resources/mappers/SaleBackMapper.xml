@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.SaleBackMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.SaleBack">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="sponsor" jdbcType="VARCHAR" property="sponsor" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="operator_id" jdbcType="VARCHAR" property="operatorId" />
+    <result column="sb_id" jdbcType="VARCHAR" property="sbId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale_back
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.hctech2006.product.product.bean.SaleBack">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sale_back (id, number, price, 
+      comment, customer_id, time, 
+      sponsor, type, goods_id, 
+      operator_id, sb_id)
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{comment,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{sponsor,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{operatorId,jdbcType=VARCHAR}, #{sbId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.SaleBack">
+    update sale_back
+    set number = #{number,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      comment = #{comment,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      sponsor = #{sponsor,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      sb_id = #{sbId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, number, price, comment, customer_id, time, sponsor, type, goods_id, operator_id, 
+    sb_id
+    from sale_back
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, number, price, comment, customer_id, time, sponsor, type, goods_id, operator_id, 
+    sb_id
+    from sale_back
+  </select>
+</mapper>

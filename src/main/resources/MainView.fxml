@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language javascript?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.* ?>
+<?import javafx.geometry.* ?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cn.hctech2006.product.product.view.controller.MainViewController">
+    <stylesheets>
+        <URL value="@/css/Main.css"/>
+    </stylesheets>
+    <top>
+      <MenuBar>
+        <menus>
+            <Menu mnemonicParsing="false" text="查询统计">
+              <items>
+                <MenuItem onAction="#showCustomerDetailsView" mnemonicParsing="false" text="客户查询" />
+                  <MenuItem onAction="#showGoodsDetailsView" mnemonicParsing="false" text="商品查询" />
+                  <MenuItem onAction="#showProviderDetailsView" mnemonicParsing="false" text="供应商查询" />
+                  <MenuItem mnemonicParsing="false" text="销售查询" />
+                  <MenuItem mnemonicParsing="false" text="销售退货查询" />
+                  <MenuItem mnemonicParsing="false" text="入库查询" onAction="#showInputDetailsView"/>
+                  <MenuItem mnemonicParsing="false" text="入库退货查询" onAction="#showOutputDetailsView"/>
+                  <MenuItem mnemonicParsing="false" text="销售排行" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="库存管理">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="进货管理">
+            <items>
+                <MenuItem mnemonicParsing="false" text="进货单" onAction="#showInputView"/>
+                <MenuItem mnemonicParsing="false" text="进货退货" onAction="#showOutputView"/>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="销售管理">
+            <items>
+              <MenuItem mnemonicParsing="false" text="销售单" />
+                <MenuItem mnemonicParsing="false" text="销售退货" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="基础信息管理">
+            <items>
+              <MenuItem mnemonicParsing="false" text="供应商信息管理" onAction="#showGoodsView"/>
+                  <MenuItem mnemonicParsing="false" text="客户信息管理" onAction="#showCustomerView"/>
+                  <MenuItem mnemonicParsing="false" text="商品信息管理" onAction="#showProviderView"/>
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="库存管理">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="库存盘点" />
+                    <MenuItem mnemonicParsing="false" text="价格调整" />
+                </items>
+            </Menu>
+        </menus>
+         <opaqueInsets>
+            <Insets top="1.0" />
+         </opaqueInsets>
+      </MenuBar>
+   </top>
+
+   <center>
+      <Label fx:id="centerLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="371.0" prefWidth="600.0" text="欢迎进入企业进销存管理系统" textAlignment="CENTER" textFill="#4a1f1f" textOverrun="CLIP" underline="true" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="FreeMono" size="46.0" />
+         </font>
+
+      </Label>
+   </center>
+</BorderPane>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="385.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.hctech2006.product.product.view.controller.ProviderViewController">
+  <tabs>
+    <Tab text="供应商信息添加">
+         <content>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="302.0" text="供应商全称" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="344.0" text="简称" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="253.0" text="地址" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="245.0" text="电话" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="258.0" text="联系人" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="389.0" text="开户银行" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="213.0" text="邮政编码" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="197.0" text="传真" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="366.0" text="联系人电话" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="192.0" text="电子信箱" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <TextField fx:id="name" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                  <TextField fx:id="shorts" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="address" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="telephone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="contacts" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="bank" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="zip" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField fx:id="fax" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <TextField fx:id="contactsTel" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <TextField fx:id="email" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Button mnemonicParsing="false" onAction="#addProvider" prefHeight="24.0" prefWidth="288.0" text="供应商添加" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+               </children>
+            </GridPane>
+         </content>
+    </Tab>
+      <Tab text="供应商信息修改删除">
+         <content>
+            <GridPane>
+               <children>
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="302.0" text="供应商全称" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="344.0" text="简称" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="253.0" text="地址" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="245.0" text="电话" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="258.0" text="联系人" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="389.0" text="开户银行" GridPane.rowIndex="5" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="220.0" text="选择供应商" GridPane.rowIndex="6" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="213.0" text="邮政编码" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="197.0" text="传真" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="366.0" text="联系人电话" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER" prefHeight="14.0" prefWidth="192.0" text="电子信箱" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <TextField fx:id="name1" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                  <TextField fx:id="shorts1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="address1" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                  <TextField fx:id="telephone1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="contacts1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="bank1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="zip1" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <TextField fx:id="fax1" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <TextField fx:id="contactsTel1" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <TextField fx:id="email1" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <ChoiceBox onAction="#fillTextField" fx:id="choiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Button fx:id="deleteProvider" onAction="#deleteProvider" mnemonicParsing="false" prefHeight="24.0" prefWidth="332.0" text="供应商删除" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                  <Button fx:id="updateProvider" onAction="#updateProvider" mnemonicParsing="false" prefHeight="24.0" prefWidth="288.0" text="供应商修改" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

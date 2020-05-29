@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.Customer">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="shorts" jdbcType="VARCHAR" property="shorts" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zip" jdbcType="VARCHAR" property="zip" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="fax" jdbcType="VARCHAR" property="fax" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="contacts_tel" jdbcType="VARCHAR" property="contactsTel" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="bank" jdbcType="VARCHAR" property="bank" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from customer
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.hctech2006.product.product.bean.Customer">
+
+    insert into customer (id, name, shorts, 
+      address, zip, telephone, 
+      fax, contacts, contacts_tel, 
+      email, bank, account, 
+      available, customer_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{shorts,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{zip,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{fax,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, #{contactsTel,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      1, #{customerId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.Customer">
+    update customer
+    set name = #{name,jdbcType=VARCHAR},
+      shorts = #{shorts,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zip = #{zip,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      contacts_tel = #{contactsTel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateAvailable" parameterType="String">
+    update customer
+    set available=0
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="String" resultMap="BaseResultMap">
+    select id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, email, 
+    bank, account, available, customer_id
+    from customer
+    where customer_id=#{customerId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, email, 
+    bank, account, available, customer_id
+    from customer where available=1
+  </select>
+  <select id="selectCountByName" parameterType="String" resultType="int">
+    select
+        count(0)
+    from customer where name=#{name}
+  </select>
+  <select id="selectByName" parameterType="String" resultMap="BaseResultMap">
+    select
+    id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, email, bank, account, available, customer_id
+    from customer where name=#{name}
+  </select>
+  <select id="checkByCustomerId" parameterType="String" resultType="int">
+    select
+    count(0)
+    from customer where customer_id=#{customerId}
+  </select>
+  <select id="selectByNameOrShorts" parameterType="cn.hctech2006.product.product.bean.Customer" resultMap="BaseResultMap">
+    select
+    id, name, shorts, address, zip, telephone, fax, contacts, contacts_tel, email, bank, account, available, customer_id
+    from customer where 1=1 and available=1
+    <if test="name != null">
+      and name like concat('%',#{name},'%')
+    </if>
+    <if test="shorts != null">
+      and shorts like concat('%',#{shorts},'%')
+    </if>
+
+  </select>
+</mapper>

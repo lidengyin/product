@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+             xmlns:fx="http://javafx.com/fxml/1"
+             fx:controller="cn.hctech2006.product.product.view.controller.ProviderDetailsViewController">
+    <top>
+        <GridPane BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Button onAction="#showByKeyword" mnemonicParsing="false" prefHeight="24.0" prefWidth="138.0" text="查询" GridPane.columnIndex="3" />
+                <Label alignment="CENTER" prefHeight="14.0" prefWidth="137.0" text="选择查询条件" />
+                <ChoiceBox fx:id="typeCB" prefHeight="24.0" prefWidth="186.0" GridPane.columnIndex="1" />
+                <TextField fx:id="keyword" GridPane.columnIndex="2" />
+                <Button onAction="#showAll" mnemonicParsing="false" prefHeight="24.0" prefWidth="158.0" text="显示全部数据" GridPane.columnIndex="4" />
+            </children>
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="providerIdCol" prefWidth="75.0" text="供应商ID" />
+                <TableColumn fx:id="nameCol" prefWidth="75.0" text="供应商全称" />
+                <TableColumn fx:id="shortsCol" prefWidth="75.0" text="供应商简称" />
+                <TableColumn fx:id="addressCol" prefWidth="75.0" text="供应商地址" />
+                <TableColumn fx:id="telephoneCol" prefWidth="75.0" text="电话" />
+                <TableColumn fx:id="faxCol" prefWidth="75.0" text="传真" />
+                <TableColumn fx:id="contactsCol" prefWidth="75.0" text="联系" />
+                <TableColumn fx:id="zipCol" prefWidth="75.0" text="邮政编码" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

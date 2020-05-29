@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.SaleMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.Sale">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="operator_id" jdbcType="VARCHAR" property="operatorId" />
+    <result column="sponsor" jdbcType="VARCHAR" property="sponsor" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="sale_id" jdbcType="VARCHAR" property="saleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sale
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.hctech2006.product.product.bean.Sale">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sale (id, number, price, 
+      comment, customer_id, time, 
+      operator_id, sponsor, pay_type, 
+      goods_id, sale_id)
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{comment,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{operatorId,jdbcType=VARCHAR}, #{sponsor,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=VARCHAR}, #{saleId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.Sale">
+    update sale
+    set number = #{number,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      comment = #{comment,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      sponsor = #{sponsor,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      sale_id = #{saleId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, number, price, comment, customer_id, time, operator_id, sponsor, pay_type, 
+    goods_id, sale_id
+    from sale
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, number, price, comment, customer_id, time, operator_id, sponsor, pay_type, 
+    goods_id, sale_id
+    from sale
+  </select>
+</mapper>

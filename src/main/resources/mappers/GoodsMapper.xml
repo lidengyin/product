@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.Goods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="shorts" jdbcType="VARCHAR" property="shorts" />
+    <result column="place" jdbcType="VARCHAR" property="place" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="paceage" jdbcType="VARCHAR" property="paceage" />
+    <result column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="promit_code" jdbcType="VARCHAR" property="promitCode" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="provider_id" jdbcType="VARCHAR" property="providerId" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.hctech2006.product.product.bean.Goods">
+    insert into goods (id, name, shorts, 
+      place, size, paceage, 
+      product_code, promit_code, price, 
+      memo, provider_id, available, 
+      goods_id)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{shorts,jdbcType=VARCHAR}, 
+      #{place,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, #{paceage,jdbcType=VARCHAR}, 
+      #{productCode,jdbcType=VARCHAR}, #{promitCode,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{memo,jdbcType=VARCHAR}, #{providerId,jdbcType=VARCHAR},1,
+      #{goodsId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.Goods">
+    update goods
+    set name = #{name,jdbcType=VARCHAR},
+      shorts = #{shorts,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      paceage = #{paceage,jdbcType=VARCHAR},
+      product_code = #{productCode,jdbcType=VARCHAR},
+      promit_code = #{promitCode,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      memo = #{memo,jdbcType=VARCHAR},
+      provider_id = #{providerId,jdbcType=VARCHAR},
+      available = #{available,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, name, shorts, place, size, paceage, product_code, promit_code, price, 
+    memo, provider_id, available, goods_id
+    from goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, shorts, place, size, paceage, product_code, promit_code, price, 
+    memo, provider_id, available, goods_id
+    from goods where available=1
+  </select>
+  <select id="checkByGoodsId" parameterType="String" resultType="int">
+    select count(0)
+    from goods where goods_id=#{goodsId}
+  </select>
+  <update id="updateByGoodsId" parameterType="cn.hctech2006.product.product.bean.Goods" >
+    update goods
+    set name = #{name,jdbcType=VARCHAR},
+        shorts = #{shorts,jdbcType=VARCHAR},
+        place = #{place,jdbcType=VARCHAR},
+        size = #{size,jdbcType=VARCHAR},
+        paceage = #{paceage,jdbcType=VARCHAR},
+        product_code = #{productCode,jdbcType=VARCHAR},
+        promit_code = #{promitCode,jdbcType=VARCHAR},
+        price = #{price,jdbcType=DECIMAL},
+        memo = #{memo,jdbcType=VARCHAR},
+        provider_id = #{providerId,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateAvailable" parameterType="String">
+    update goods
+    set available=0
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByNameAndShorts" parameterType="cn.hctech2006.product.product.bean.Goods" resultMap="BaseResultMap">
+    select
+        id, name, shorts, place, size, paceage, product_code, promit_code, price, memo, provider_id, available, goods_id
+    from goods where 1=1 and available=1
+    <if test="name != null">
+      and name like CONCAT('%',#{name},'%')
+    </if>
+    <if test="shorts != null">
+      and shorts like CONCAT('%',#{shorts},'%')
+    </if>
+  </select>
+  <select id="selectByGoodsId" parameterType="String" resultMap="BaseResultMap">
+    select
+     id, name, shorts, place, size, paceage, product_code, promit_code, price, memo, provider_id, available, goods_id
+    from goods where goods_id=#{goodsId}
+  </select>
+</mapper>

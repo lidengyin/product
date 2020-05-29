@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane  prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+             xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="cn.hctech2006.product.product.view.controller.GoodsDetailsViewController">
+   <center>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="goodsIdCol" prefWidth="75.0" text="商品ID" />
+          <TableColumn fx:id="nameCol" prefWidth="75.0" text="商品名称" />
+            <TableColumn fx:id="shortsCol" prefWidth="75.0" text="简称" />
+            <TableColumn fx:id="placeCol" prefWidth="75.0" text="产地" />
+            <TableColumn fx:id="priceCol" prefWidth="75.0" text="价格" />
+            <TableColumn fx:id="sizeCol" prefWidth="75.0" text="规格" />
+            <TableColumn fx:id="paceageCol" prefWidth="75.0" text="包装" />
+            <TableColumn fx:id="productCodeCol" prefWidth="75.0" text="批号" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="选择查询条件" />
+            <ChoiceBox fx:id="typeCB" prefWidth="150.0" GridPane.columnIndex="1" />
+            <ChoiceBox fx:id="equalCB" prefWidth="150.0" GridPane.columnIndex="2" />
+            <TextField fx:id="name" GridPane.columnIndex="3" />
+            <Button onAction="#showByKeyword" mnemonicParsing="false" text="查询" GridPane.columnIndex="4" />
+            <Button onAction="#showAllGoodsDetails" mnemonicParsing="false" text="显示全部数据" GridPane.columnIndex="5" />
+         </children>
+      </GridPane>
+   </top>
+</BorderPane>

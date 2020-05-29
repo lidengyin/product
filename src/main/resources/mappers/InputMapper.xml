@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.product.product.mapper.InputMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.product.product.bean.Input">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="commit" jdbcType="VARCHAR" property="commit" />
+    <result column="provider_id" jdbcType="VARCHAR" property="providerId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="operator_id" jdbcType="VARCHAR" property="operatorId" />
+    <result column="sponsor" jdbcType="VARCHAR" property="sponsor" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goodsId" />
+    <result column="input_id" jdbcType="VARCHAR" property="inputId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from input
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.hctech2006.product.product.bean.Input">
+
+    insert into input (id, number, price, 
+      commit, provider_id, time, 
+      operator_id, sponsor, type, 
+      goods_id, input_id)
+    values (#{id,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{commit,jdbcType=VARCHAR}, #{providerId,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
+      #{operatorId,jdbcType=VARCHAR}, #{sponsor,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{goodsId,jdbcType=VARCHAR}, #{inputId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.product.product.bean.Input">
+    update input
+    set number = #{number,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      commit = #{commit,jdbcType=VARCHAR},
+      provider_id = #{providerId,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      operator_id = #{operatorId,jdbcType=VARCHAR},
+      sponsor = #{sponsor,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      input_id = #{inputId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, number, price, commit, provider_id, time, operator_id, sponsor, type, 
+    goods_id, input_id
+    from input
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, number, price, commit, provider_id, time, operator_id, sponsor, type, 
+    goods_id, input_id
+    from input
+  </select>
+
+  <select id="checkByInputIdAndGoodsId" parameterType="map" resultMap="BaseResultMap">
+    select
+        id, number, price, commit, provider_id, time, operator_id, sponsor, type, goods_id, input_id
+    from input where input_id=#{inputId} and goods_id=#{goodsId}
+  </select>
+  <update id="updateByInputIdAndGoodsId" parameterType="cn.hctech2006.product.product.bean.Input">
+    update input
+    set number = #{number,jdbcType=INTEGER}
+    where input_id=#{inputId} and goods_id=#{goodsId}
+  </update>
+  <select id="selectInputBykeyWord" parameterType="cn.hctech2006.product.product.DO.InputDO" resultMap="BaseResultMap">
+    select
+        i.id, i.number, i.price, i.commit, i.provider_id, i.time, i.operator_id, i.sponsor, i.type, i.goods_id, i.input_id
+    from input i
+    join goods g on i.goods_id = g.goods_id and g.name like concat('%',#{goodsName},'%')
+    where 1=1
+    <if test="dateTo != null and dateFrom != null">
+      and i.time between #{dateFrom} and #{dateTo}
+    </if>
+  </select>
+</mapper>
